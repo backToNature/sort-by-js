@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>简单选择排序</title>
+
+</head>
+
+<body>
+<h1>简单选择排序</h1>
+<input type="text" id="array" placeholder="请输入以逗号分隔的数字"/>
+<input type="button" value="执行排序" id="excute"/>
+<p>排序结果:</p>
+</body>
+<script type="text/javascript"> 
+function selectSort(array){
+	var i,j,temp,min;
+	for(i = 0; i< array.length -1 ;i++){
+		min = i;
+		for(j = i+1 ; j< array.length ; j++){
+			if(array[j]<array[min]){
+				min = j;
+			}
+			if(min!=i){
+				temp = array[min];
+				array[min] = array[i];
+				array[i] = temp;
+			}
+		}
+	}
+}
+var button = document.getElementById("excute");
+button.onclick = function(){
+	var arrstr = document.getElementById("array").value.toString(),
+	array = arrstr.split(",");
+	for(var i = 0; i< array.length; i++){
+		array[i] = parseInt(array[i]);
+	}
+	selectSort(array);
+	document.getElementsByTagName("p")[0].innerHTML= "排序结果:"+array;
+};
+
+</script> 
+</html>
+ 

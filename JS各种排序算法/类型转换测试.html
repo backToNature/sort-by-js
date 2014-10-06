@@ -1,0 +1,71 @@
+﻿<html>
+<head>
+    <meta charset="utf-8"/>
+   <style>
+		*{font-size: 30px;}
+   </style>
+</head>
+<body>
+<div>
+<select id="dataType">
+	<option value="Array">Array</option>
+	<option value="Boolean">Boolean</option>
+	<option value="Date">Date</option>
+	<option value="Fcuntionx">Fcuntion</option>
+	<option value="Number">Number</option>
+	<option value="Obeject">Obeject</option>
+	<option value="String">String</option>
+</select>
+<select id="method">
+	<option value="valueOf">valueOf</option>
+	<option value="toString">toString</option>
+</select>
+<input type="button" value="测试" id="submit"/>
+</div>
+<div>
+	<label id="changeBefore">转换前值：</label>
+	<label id="changeBeforeType">转换前类型：</label>
+</div>
+<div>
+	<label id="afterChange">转换后值：</label>
+	<label id="afterChangeType">转换后类型：</label>
+</div>
+<script>
+var typeValue = {
+		Array: [1,2,3,4,5,6],
+		Boolean:true,
+		Date: new Date(2014, 5, 8),
+		Fcuntionx: function(){
+			alert("xxx");
+		},
+		Number: 1.5,
+		Obeject: {},
+		String: "我叫郭豪"
+},
+	dom ={
+		submit: document.getElementById("submit"),
+		dataType: document.getElementById("dataType"),
+		method: document.getElementById("method"),
+		changeBefore:document.getElementById("changeBefore"),
+		changeBeforeType:document.getElementById("changeBeforeType"),
+		afterChange:document.getElementById("afterChange"),
+		afterChangeType:document.getElementById("afterChangeType")
+};
+window.onload = function(){
+	dom.submit.onclick = function() {
+		var type = dom.dataType.value,
+			method = dom.method.value;
+			dom.changeBefore.firstChild.nodeValue = "转换前值：" + typeValue[type];
+			dom.changeBeforeType.firstChild.nodeValue = "转换前类型：" + (typeof typeValue[type]);
+			if(method == "valueOf"){
+				dom.afterChange.firstChild.nodeValue = "转换后值：" + typeValue[type].valueOf();
+				dom.afterChangeType.firstChild.nodeValue = "转换后类型：" + (typeof typeValue[type].valueOf());
+			}	else {
+				dom.afterChange.firstChild.nodeValue = "转换后值：" + typeValue[type].toString();
+				dom.afterChangeType.firstChild.nodeValue = "转换后类型：" + (typeof typeValue[type].toString());
+			}
+	};
+};
+</script>
+</body>
+</html> 

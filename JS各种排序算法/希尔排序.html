@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>希尔排序</title>
+
+</head>
+
+<body>
+<h1>希尔排序</h1>
+<p>时间复杂度：O（nlogn）～O（n2）</p>
+<p>空间复杂度：O(1)</p>
+<p>稳定性：不稳定</p>
+<input type="text" id="array" placeholder="请输入以逗号分隔的数字"/>
+<input type="button" value="执行排序" id="excute"/>
+<p>排序结果:</p>
+</body>
+<script type="text/javascript"> 
+function shellSort(array){
+	var i,j,dk,temp;
+	for(dk=Math.floor(array.length/2) ; dk>=1; dk=Math.floor(dk/2)){
+		for(i = dk ;i < array.length ; i++){
+			if(array[i]<array[i-dk]){
+				temp = array[i];
+				for(j=i-dk ;j>=0 && temp<array[j] ; j=j-dk){
+					array[j+dk] = array[j];
+				}
+				array[j+dk] = temp;
+			}
+		}
+	}
+}
+var button = document.getElementById("excute");
+button.onclick = function(){
+	var arrstr = document.getElementById("array").value.toString(),
+	array = arrstr.split(",");
+	for(var i = 0; i< array.length; i++){
+		array[i] = parseInt(array[i]);
+	}
+	shellSort(array);
+	document.getElementsByTagName("p")[0].innerHTML= "排序结果:"+array;
+};
+
+</script> 
+</html>
+ 
+

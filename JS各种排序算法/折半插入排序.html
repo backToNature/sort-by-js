@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>折半插入排序</title>
+
+</head>
+
+<body>
+<h1>折半插入排序</h1>
+<input type="text" id="array" placeholder="请输入以逗号分隔的数字"/>
+<input type="button" value="执行排序" id="excute"/>
+<p>排序结果:</p>
+</body>
+<script type="text/javascript"> 
+function midInsertSort(array){
+	var i,j,temp,low,mid,high;
+	for(i=1 ; i<array.length; i++){
+		if(array[i]<array[i-1]){
+			temp = array[i];
+			low = 0,high = i-1;
+			while(low<=high){
+				mid =Math.floor((low+high)/2);
+				if(temp<array[mid]){
+					high = mid-1;
+				}else {
+					low = mid+1;
+				}
+			}
+				for(j=i-1 ; j>=high+1; j--){
+					array[j+1] = array[j];
+				}
+				array[high+1] = temp;	
+		}
+	}
+}
+var button = document.getElementById("excute");
+button.onclick = function(){
+	var arrstr = document.getElementById("array").value.toString(),
+	array = arrstr.split(",");
+	for(var i = 0; i< array.length; i++){
+		array[i] = parseInt(array[i]);
+	}
+	midInsertSort(array);
+	document.getElementsByTagName("p")[0].innerHTML= "排序结果:"+array;
+};
+
+</script> 
+</html>
+ 
